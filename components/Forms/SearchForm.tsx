@@ -8,7 +8,7 @@ import {
   InputRightElement
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Contract, contract } from "ethers";
+import { Contract } from "ethers";
 import useKittyContract from "../../Hooks/useKittyContract";
 
 type SearchFormProps = {
@@ -20,8 +20,8 @@ export const SearchForm = ({ contract }: SearchFormProps) => {
   const handleSubmit = async (e: any): Promise<void> => {
     e.preventDefault();
 
-    //const response = await contract?.getKitty(4);
-    //console.log(response);
+    const response = await contract?.getKitty(5);
+    console.log(response);
     console.log(searchText);
   };
 
@@ -34,19 +34,28 @@ export const SearchForm = ({ contract }: SearchFormProps) => {
     setSearchText(e.target.value);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl>
-        <FormHelperText textAlign="center">Search a Kitty</FormHelperText>
-        <FormLabel htmlFor="address"></FormLabel>
-        <InputGroup size="md">
-          <Input onChange={handleChange} value={searchText} />
-          <InputRightElement width="4.5rem">
-            <Button type="submit" h="1.75rem" size="sm">
-              go
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <FormControl>
+          <FormHelperText textAlign="center">Search a Kitty</FormHelperText>
+          <FormLabel htmlFor="address"></FormLabel>
+          <InputGroup size="md">
+            <Input onChange={handleChange} value={searchText} />
+            <InputRightElement width="4.5rem">
+              <Button type="submit" h="1.75rem" size="sm">
+                go
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+      </form>
+      {searchText && (
+        <img
+          data-testid="kitty-image"
+          src={`https://img.cryptokitties.co/0x06012c8cf97bead5deae237070f9587f8e7a266d/${searchText}.svg`}
+          alt="kitty"
+        />
+      )}
+    </div>
   );
 };
