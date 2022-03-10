@@ -2,11 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import KittyReader from '../components/ConnectWeb3/ConnectWeb3';
+import KittyReader from '../components/ConnectContract/ConnectContract';
 import { Box, Button, Container, FormControl, FormHelperText, FormLabel, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { SearchForm } from '../components/Forms/SearchForm';
 import useKittyContract from '../Hooks/useKittyContract';
-import { contract } from 'ethers';
+import { NavBar } from '../components/Navbar/NavBar';
+
 
 const Home: NextPage = () => {
   const kitty = useKittyContract();
@@ -19,13 +20,14 @@ const Home: NextPage = () => {
       
         
       </Head>
-
+      <NavBar></NavBar>
+     
       <main className={styles.main}>
-      
+        
         <h1 className={styles.title}>
          KittyCatGo
         </h1>
-
+        
       <Container maxW='xl' centerContent>
       <Box w='100%'padding='40px'>
         <SearchForm contract={kitty?.kittyContract}></SearchForm>
