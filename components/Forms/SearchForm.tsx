@@ -37,7 +37,9 @@ export const SearchForm = ({ contract }: SearchFormProps) => {
     <div>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <FormHelperText textAlign="center">Search a Kitty</FormHelperText>
+          <FormHelperText textAlign="center">
+            Search a Kitty from 1-999999
+          </FormHelperText>
           <FormLabel htmlFor="address"></FormLabel>
           <InputGroup size="md">
             <Input onChange={handleChange} value={searchText} />
